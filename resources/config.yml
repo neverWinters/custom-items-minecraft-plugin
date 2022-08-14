@@ -1,0 +1,26 @@
+first-join-drop: true
+first-join-drop-items:
+  - type: BOOK
+    subtype: WRITTEN_BOOK
+    display-name: '&aThis is a test'
+    title: Title 1
+    text:
+      - This is sample text
+      - This is second page
+    lore:
+      - First line
+      - Second line
+    author: Test Author
+    quantity: 1
+  - type: BOOK
+    subtype: WRITABLE_BOOK
+    display-name: '&aThis is a test 2'
+    title: Title 2
+    text: 
+      - This is sample text 2
+      - This is second page 2
+    lore:
+      - First line 2
+      - Second line 2
+    author: Test Author 2
+    quantity: 1
