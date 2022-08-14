@@ -4,7 +4,7 @@ A custom items plugin manager.
 
 <p align="center">
 
-<a href="https://github.com/QingWei-Li/donate"><img alt="donate" src="https://www.buymeacoffee.com/neverwinters"></a>
+<a href="https://www.buymeacoffee.com/neverwinters"><img alt="donate" src="https://img.shields.io/badge/%24-donate-ff69b4.svg?style=flat-square"></a>
 
 </p>
 
