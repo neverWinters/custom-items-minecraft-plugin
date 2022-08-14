@@ -7,4 +7,4 @@
 - Flexible
 
 [GitHub](https://github.com/neverWinters/custom-items-minecraft-plugin)
-[Getting Started](#home)
+[Getting Started](#custom-items-minecraft-plugin)
