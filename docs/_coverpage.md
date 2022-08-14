@@ -1,6 +1,6 @@
 # Custom Items Minecraft Plugin <small>0.1-SNAPSHOT</small>
 
-> A custom plugin manager.
+> A custom items plugin manager.
 
 - Simple to understand and configure
 - Configuration driven
