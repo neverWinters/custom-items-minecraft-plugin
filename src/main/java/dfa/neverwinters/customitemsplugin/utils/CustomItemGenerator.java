@@ -24,7 +24,7 @@ public class CustomItemGenerator {
      * @param bookInfo Book item information
      * @return ItemStack instance
      */
-    public ItemStack generateCustomItemTypeBook(Map<?, ?> bookInfo)
+    public static ItemStack generateCustomItemTypeBook(Map<?, ?> bookInfo)
     {
 
         ItemStack itemStack = new ItemStack(Material.getMaterial((String) bookInfo.get("subtype"))); 
@@ -76,7 +76,7 @@ public class CustomItemGenerator {
      * @param armorInfo Armor item information
      * @return ItemStack instance
      */
-    public ItemStack generateCustomItemTypeArmor(Map<?, ?> armorInfo)
+    public static ItemStack generateCustomItemTypeArmor(Map<?, ?> armorInfo)
     {
 
         ItemStack itemStack = new ItemStack(Material.getMaterial((String) armorInfo.get("subtype")));
@@ -112,6 +112,24 @@ public class CustomItemGenerator {
         }
 
         itemStack.setItemMeta(armorMeta);
+
+        return itemStack;
+
+    }
+
+    /**
+     * <p>generateCustomItemTypeWeapon</p>
+     * <p>Method to generate weapon type custom item.</p>
+     * @param weaponInfo Weapon item information
+     * @return ItemStack instance
+     */
+    public static ItemStack generateCustomItemTypeWeapon(Map<?, ?> weaponInfo)
+    {
+
+        ItemStack itemStack = new ItemStack(Material.getMaterial((String) weaponInfo.get("subtype")));
+        ItemMeta weaponMeta = (ItemMeta) itemStack.getItemMeta();
+
+        itemStack.setItemMeta(weaponMeta);
 
         return itemStack;
 

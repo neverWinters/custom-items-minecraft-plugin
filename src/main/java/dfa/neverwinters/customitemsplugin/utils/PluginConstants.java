@@ -56,6 +56,10 @@ public class PluginConstants
      * <p>First drop item type definition for weapons.</p>
      */
     public static final String FIRST_DROP_ITEM_TYPE_WEAPON = "WEAPON";
+    public static final String[] FIRST_DROP_ITEM_SUBTYPE_WEAPON = 
+    {
+        
+    };
     /**
      * <p>First drop item type definition for food.</p>
      */

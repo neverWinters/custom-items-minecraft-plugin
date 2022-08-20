@@ -14,11 +14,14 @@ import dfa.neverwinters.customitemsplugin.utils.CustomItemGenerator;
 import dfa.neverwinters.customitemsplugin.utils.PlayerValidator;
 import dfa.neverwinters.customitemsplugin.utils.PluginConstants;
 
+/**
+ * <p>FirstJoinListener</p>
+ * <p>Player first join listener process class.</p>
+ */
 public class FirstJoinListener implements Listener 
 {
     
     private Main plugin;
-    private PlayerValidator validator = new PlayerValidator();
 
     /**
      * <p>FirstJoinListener</p>
@@ -41,7 +44,7 @@ public class FirstJoinListener implements Listener
 
         Player player = e.getPlayer();
 
-        if(!validator.ValidatePlayerPreviousConnection(player))
+        if(!PlayerValidator.ValidatePlayerPreviousConnection(player))
         {
 
             List<Map<?, ?>> firstDropItemList =  plugin.getConfig().getMapList("first-join-drop-items");
@@ -50,7 +53,6 @@ public class FirstJoinListener implements Listener
             {
 
                 String itemType = (String) firstDropItem.get("type");
-                CustomItemGenerator generator = new CustomItemGenerator();
 
                 switch(itemType)
                 {
@@ -63,7 +65,7 @@ public class FirstJoinListener implements Listener
                             for(int i = 0; i < (int) firstDropItem.get("quantity"); i++)
                             {
 
-                                player.getInventory().addItem(generator.generateCustomItemTypeBook(firstDropItem));
+                                player.getInventory().addItem(CustomItemGenerator.generateCustomItemTypeBook(firstDropItem));
 
                             }
 
@@ -89,12 +91,40 @@ public class FirstJoinListener implements Listener
                             for(int i = 0; i < (int) firstDropItem.get("quantity"); i++)
                             {
 
-                                player.getInventory().addItem(generator.generateCustomItemTypeArmor(firstDropItem));
+                                player.getInventory().addItem(CustomItemGenerator.generateCustomItemTypeArmor(firstDropItem));
 
                             }
 
                         }
                         else 
+                        {
+
+                            System.out.println(
+                                PluginConstants.PLUGIN_CHAT_PREFIX +
+                                PluginConstants.TEXT_BLANK_SPACE +
+                                PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
+                                PluginConstants.TEXT_BLANK_SPACE +
+                                "[ " + (String) firstDropItem.get("subtype") + " ]"
+                            );
+
+                        }
+
+                        break;
+
+                    case PluginConstants.FIRST_DROP_ITEM_TYPE_WEAPON:
+
+                        if(this.itemSubtypeValidator(PluginConstants.FIRST_DROP_ITEM_SUBTYPE_WEAPON, (String) firstDropItem.get("subtype")))
+                        {
+
+                            for(int i = 0; i < (int) firstDropItem.get("quantity"); i++)
+                            {
+
+                                player.getInventory().addItem(CustomItemGenerator.generateCustomItemTypeWeapon(firstDropItem));
+
+                            }
+
+                        }
+                        else
                         {
 
                             System.out.println(

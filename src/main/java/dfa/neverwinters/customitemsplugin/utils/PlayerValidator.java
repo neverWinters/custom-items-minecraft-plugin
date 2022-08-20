@@ -10,7 +10,7 @@ public class PlayerValidator {
      * @param player Player instance
      * @return true or false
      */
-    public boolean ValidatePlayerPreviousConnection(Player player)
+    public static boolean ValidatePlayerPreviousConnection(Player player)
     {
 
         return player.hasPlayedBefore();
