@@ -24,3 +24,19 @@ first-join-drop-items:
       - Second line 2
     author: Test Author 2
     quantity: 1
+  - type: ARMOR
+    subtype: CHAINMAIL_HELMET
+    display-name: '&aThis is a test 1'
+    unbreakable: false
+    generic-armor-amount: 10.0
+    generic-armor-toughness-amount: 10.0
+    enchantments:
+      - name: fire_protection
+        level: 2
+        ignore-level-restriction: false
+      - name: respiration
+        level: 2
+        ignore-level-restriction: false
+    quantity: 1
+executable-custom-items: true
+entity-interactive-custom-items: true

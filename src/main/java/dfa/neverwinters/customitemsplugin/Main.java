@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dfa.neverwinters.customitemsplugin.listeners.FirstJoinListener;
+import dfa.neverwinters.customitemsplugin.listeners.PlayerUseListener;
 import dfa.neverwinters.customitemsplugin.utils.PluginConstants;
 
 /**
@@ -24,9 +25,16 @@ public class Main extends JavaPlugin
         onPluginStartTask();
 
         // Register commands
+        // /drop => comando para entregar drops a un usuario en especifico
 
         // Register listeners
-        Bukkit.getPluginManager().registerEvents(new FirstJoinListener(this), this);
+        if(this.getConfig().getBoolean("first-join-drop")) 
+            Bukkit.getPluginManager().registerEvents(new FirstJoinListener(this), this);
+            
+        if(this.getConfig().getBoolean("executable-custom-items"))
+            Bukkit.getPluginManager().registerEvents(new PlayerUseListener(this), this);
+
+        // falta listener para items que interactuan con otras entidades
 
     }
 
