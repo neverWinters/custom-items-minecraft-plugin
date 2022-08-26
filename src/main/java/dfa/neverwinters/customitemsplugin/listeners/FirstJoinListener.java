@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import dfa.neverwinters.customitemsplugin.utils.PluginUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,7 +22,7 @@ import dfa.neverwinters.customitemsplugin.utils.PluginConstants;
 public class FirstJoinListener implements Listener 
 {
     
-    private Main plugin;
+    private final Main plugin;
 
     /**
      * <p>FirstJoinListener</p>
@@ -44,7 +45,7 @@ public class FirstJoinListener implements Listener
 
         Player player = e.getPlayer();
 
-        if(!PlayerValidator.ValidatePlayerPreviousConnection(player))
+        if(!PlayerValidator.validatePlayerPreviousConnection(player))
         {
 
             List<Map<?, ?>> firstDropItemList =  plugin.getConfig().getMapList("first-join-drop-items");
@@ -62,7 +63,7 @@ public class FirstJoinListener implements Listener
                         if(this.itemSubtypeValidator(PluginConstants.FIRST_DROP_ITEM_SUBTYPE_BOOK, (String) firstDropItem.get("subtype")))
                         {
 
-                            for(int i = 0; i < (int) firstDropItem.get("quantity"); i++)
+                            for(int i = 0; i < (Integer) firstDropItem.get("quantity"); i++)
                             {
 
                                 player.getInventory().addItem(CustomItemGenerator.generateCustomItemTypeBook(firstDropItem));
@@ -72,13 +73,15 @@ public class FirstJoinListener implements Listener
                         }
                         else
                         {
-                            System.out.println(
-                                PluginConstants.PLUGIN_CHAT_PREFIX +
-                                PluginConstants.TEXT_BLANK_SPACE +
-                                PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
-                                PluginConstants.TEXT_BLANK_SPACE +
-                                "[ " + (String) firstDropItem.get("subtype") + " ]"
+
+                            PluginUtils.logger(
+                                    PluginConstants.PLUGIN_CHAT_PREFIX +
+                                            PluginConstants.TEXT_BLANK_SPACE +
+                                            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
+                                            PluginConstants.TEXT_BLANK_SPACE +
+                                            "[ " + firstDropItem.get("subtype") + " ]"
                             );
+
                         }
 
                         break;
@@ -88,7 +91,7 @@ public class FirstJoinListener implements Listener
                         if(this.itemSubtypeValidator(PluginConstants.FIRST_DROP_ITEM_SUBTYPE_ARMOR, (String) firstDropItem.get("subtype")))
                         {
 
-                            for(int i = 0; i < (int) firstDropItem.get("quantity"); i++)
+                            for(int i = 0; i < (Integer) firstDropItem.get("quantity"); i++)
                             {
 
                                 player.getInventory().addItem(CustomItemGenerator.generateCustomItemTypeArmor(firstDropItem));
@@ -99,12 +102,12 @@ public class FirstJoinListener implements Listener
                         else 
                         {
 
-                            System.out.println(
-                                PluginConstants.PLUGIN_CHAT_PREFIX +
-                                PluginConstants.TEXT_BLANK_SPACE +
-                                PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
-                                PluginConstants.TEXT_BLANK_SPACE +
-                                "[ " + (String) firstDropItem.get("subtype") + " ]"
+                            PluginUtils.logger(
+                                    PluginConstants.PLUGIN_CHAT_PREFIX +
+                                            PluginConstants.TEXT_BLANK_SPACE +
+                                            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
+                                            PluginConstants.TEXT_BLANK_SPACE +
+                                            "[ " + firstDropItem.get("subtype") + " ]"
                             );
 
                         }
@@ -116,7 +119,7 @@ public class FirstJoinListener implements Listener
                         if(this.itemSubtypeValidator(PluginConstants.FIRST_DROP_ITEM_SUBTYPE_WEAPON, (String) firstDropItem.get("subtype")))
                         {
 
-                            for(int i = 0; i < (int) firstDropItem.get("quantity"); i++)
+                            for(int i = 0; i < (Integer) firstDropItem.get("quantity"); i++)
                             {
 
                                 player.getInventory().addItem(CustomItemGenerator.generateCustomItemTypeWeapon(firstDropItem));
@@ -127,12 +130,12 @@ public class FirstJoinListener implements Listener
                         else
                         {
 
-                            System.out.println(
-                                PluginConstants.PLUGIN_CHAT_PREFIX +
-                                PluginConstants.TEXT_BLANK_SPACE +
-                                PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
-                                PluginConstants.TEXT_BLANK_SPACE +
-                                "[ " + (String) firstDropItem.get("subtype") + " ]"
+                            PluginUtils.logger(
+                                    PluginConstants.PLUGIN_CHAT_PREFIX +
+                                            PluginConstants.TEXT_BLANK_SPACE +
+                                            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
+                                            PluginConstants.TEXT_BLANK_SPACE +
+                                            "[ " + firstDropItem.get("subtype") + " ]"
                             );
 
                         }
@@ -141,12 +144,12 @@ public class FirstJoinListener implements Listener
 
                     default:
 
-                        System.out.println(
-                            PluginConstants.PLUGIN_CHAT_PREFIX +
-                            PluginConstants.TEXT_BLANK_SPACE +
-                            PluginConstants.FIRST_DROP_ITEM_TYPE_NOT_VALID + 
-                            PluginConstants.TEXT_BLANK_SPACE +
-                            "[ " + itemType + " ]"
+                        PluginUtils.logger(
+                                PluginConstants.PLUGIN_CHAT_PREFIX +
+                                        PluginConstants.TEXT_BLANK_SPACE +
+                                        PluginConstants.FIRST_DROP_ITEM_TYPE_NOT_VALID +
+                                        PluginConstants.TEXT_BLANK_SPACE +
+                                        "[ " + itemType + " ]"
                         );
                         break;
 

@@ -1,5 +1,6 @@
 package dfa.neverwinters.customitemsplugin;
 
+import dfa.neverwinters.customitemsplugin.utils.PluginUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -45,10 +46,10 @@ public class Main extends JavaPlugin
     protected void onPluginStartTask()
     {
 
-        System.out.println(
-            PluginConstants.PLUGIN_CHAT_PREFIX + 
-            PluginConstants.TEXT_BLANK_SPACE +
-            PluginConstants.PLUGIN_ENABLED_MESSAGE
+        PluginUtils.logger(
+                PluginConstants.PLUGIN_CHAT_PREFIX +
+                        PluginConstants.TEXT_BLANK_SPACE +
+                        PluginConstants.PLUGIN_ENABLED_MESSAGE
         );
         this.saveDefaultConfig();
         this.getConfig().options().copyDefaults();

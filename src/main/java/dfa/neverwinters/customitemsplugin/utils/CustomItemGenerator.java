@@ -30,41 +30,46 @@ public class CustomItemGenerator {
         ItemStack itemStack = new ItemStack(Material.getMaterial((String) bookInfo.get("subtype"))); 
         BookMeta bookMeta = (BookMeta) itemStack.getItemMeta();
 
-        bookMeta.setDisplayName(PluginUtils.chat((String) bookInfo.get("display-name")));
-        bookMeta.setAuthor((String) bookInfo.get("author"));
-        bookMeta.setTitle((String) bookInfo.get("title"));
-
-        if(bookInfo.get("text") instanceof List<?>)
+        if(bookMeta != null)
         {
 
-            List<?> bookPages = (List<?>) bookInfo.get("text");
+            bookMeta.setDisplayName(PluginUtils.chat((String) bookInfo.get("display-name")));
+            bookMeta.setAuthor((String) bookInfo.get("author"));
+            bookMeta.setTitle((String) bookInfo.get("title"));
 
-            for(Object bookPage : bookPages)
-            { 
-
-                bookMeta.addPage((String) bookPage);
-
-            }
-            
-        }
-
-        if(bookInfo.get("lore") instanceof ArrayList<?>)
-        {
-
-            ArrayList<String> loreVerified = new ArrayList<String>();
-            List<?> lore = (List<?>) bookInfo.get("lore");
-
-            for(Object loreLine : lore)
+            if(bookInfo.get("text") instanceof List<?>)
             {
-                
-                loreVerified.add((String) loreLine);
+
+                List<?> bookPages = (List<?>) bookInfo.get("text");
+
+                for(Object bookPage : bookPages)
+                {
+
+                    bookMeta.addPage((String) bookPage);
+
+                }
 
             }
 
-            if(!loreVerified.isEmpty()){ bookMeta.setLore(loreVerified); }
-        }
+            if(bookInfo.get("lore") instanceof ArrayList<?>)
+            {
 
-        itemStack.setItemMeta(bookMeta);
+                ArrayList<String> loreVerified = new ArrayList<>();
+                List<?> lore = (List<?>) bookInfo.get("lore");
+
+                for(Object loreLine : lore)
+                {
+
+                    loreVerified.add((String) loreLine);
+
+                }
+
+                if(!loreVerified.isEmpty()){ bookMeta.setLore(loreVerified); }
+            }
+
+            itemStack.setItemMeta(bookMeta);
+
+        }
 
         return itemStack;
         
@@ -80,38 +85,48 @@ public class CustomItemGenerator {
     {
 
         ItemStack itemStack = new ItemStack(Material.getMaterial((String) armorInfo.get("subtype")));
-        ItemMeta armorMeta = (ItemMeta) itemStack.getItemMeta();
+        ItemMeta armorMeta = itemStack.getItemMeta();
 
-        armorMeta.setDisplayName(PluginUtils.chat((String) armorInfo.get("display-name")));
-        armorMeta.setUnbreakable((boolean) armorInfo.get("unbreakable"));
-
-        AttributeModifier genericArmor = new AttributeModifier(UUID.randomUUID(), "generic.armor", (double) armorInfo.get("generic-armor-amount"), Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        AttributeModifier genericArmorToughness = new AttributeModifier(UUID.randomUUID(), "generic.armor.toughness", (double) armorInfo.get("generic-armor-toughness-amount"), Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-
-        armorMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, genericArmor);
-        armorMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, genericArmorToughness);
-
-        if(armorInfo.get("enchantments") instanceof List<?>)
+        if(armorMeta != null)
         {
 
-            List<?> enchantmentsList = (List<?>) armorInfo.get("enchantments");
+            armorMeta.setDisplayName(PluginUtils.chat((String) armorInfo.get("display-name")));
+            armorMeta.setUnbreakable((Boolean) armorInfo.get("unbreakable"));
 
-            for(Object enchantment : enchantmentsList)
-            { 
-                
-                NamespacedKey key = NamespacedKey.minecraft((String) ((Map<?, ?>) enchantment).get("name"));
-                Enchantment enchant = Enchantment.getByKey(key);
+            AttributeModifier genericArmor = new AttributeModifier(UUID.randomUUID(), "generic.armor", (Double) armorInfo.get("generic-armor-amount"), Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+            AttributeModifier genericArmorToughness = new AttributeModifier(UUID.randomUUID(), "generic.armor.toughness", (Double) armorInfo.get("generic-armor-toughness-amount"), Operation.ADD_NUMBER, EquipmentSlot.HEAD);
 
-                armorMeta.addEnchant(
-                    enchant,
-                    (int) ((Map<?, ?>) enchantment).get("level"), 
-                    (boolean) ((Map<?, ?>) enchantment).get("ignore-level-restriction"));
+            armorMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, genericArmor);
+            armorMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, genericArmorToughness);
+
+            if(armorInfo.get("enchantments") instanceof List<?>)
+            {
+
+                List<?> enchantmentsList = (List<?>) armorInfo.get("enchantments");
+
+                for(Object enchantment : enchantmentsList)
+                {
+
+                    NamespacedKey key = NamespacedKey.minecraft((String) ((Map<?, ?>) enchantment).get("name"));
+                    Enchantment enchant = Enchantment.getByKey(key);
+
+                    if(enchant != null)
+                    {
+
+                        armorMeta.addEnchant(
+                                enchant,
+                                (Integer) ((Map<?, ?>) enchantment).get("level"),
+                                (Boolean) ((Map<?, ?>) enchantment).get("ignore-level-restriction"));
+
+                    }
+
+                }
 
             }
 
-        }
+            itemStack.setItemMeta(armorMeta);
 
-        itemStack.setItemMeta(armorMeta);
+        }
 
         return itemStack;
 
@@ -127,7 +142,7 @@ public class CustomItemGenerator {
     {
 
         ItemStack itemStack = new ItemStack(Material.getMaterial((String) weaponInfo.get("subtype")));
-        ItemMeta weaponMeta = (ItemMeta) itemStack.getItemMeta();
+        ItemMeta weaponMeta = itemStack.getItemMeta();
 
         itemStack.setItemMeta(weaponMeta);
 
