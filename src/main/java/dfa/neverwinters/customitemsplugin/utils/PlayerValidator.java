@@ -3,7 +3,13 @@ package dfa.neverwinters.customitemsplugin.utils;
 import org.bukkit.entity.Player;
 
 public class PlayerValidator {
-    
+
+    /**
+     * <p>PlayerValidator</p>
+     * <p>Private class constructor.</p>
+     */
+    private PlayerValidator(){ }
+
     /**
      * <p>validatePlayerPreviousConnection</p>
      * <p>Method to validate if current player has connected previously to server.</p>

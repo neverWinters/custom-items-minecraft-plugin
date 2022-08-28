@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import dfa.neverwinters.customitemsplugin.utils.PluginUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +13,7 @@ import dfa.neverwinters.customitemsplugin.Main;
 import dfa.neverwinters.customitemsplugin.utils.CustomItemGenerator;
 import dfa.neverwinters.customitemsplugin.utils.PlayerValidator;
 import dfa.neverwinters.customitemsplugin.utils.PluginConstants;
+import dfa.neverwinters.customitemsplugin.utils.PluginUtils;
 
 /**
  * <p>FirstJoinListener</p>
@@ -23,6 +23,19 @@ public class FirstJoinListener implements Listener
 {
     
     private final Main plugin;
+    private static final String[] FIRST_DROP_ITEM_SUBTYPE_BOOK = new String[]{
+            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_WRITTEN_BOOK,
+            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_WRITABLE_BOOK
+    };
+    private static final String[] FIRST_DROP_ITEM_SUBTYPE_ARMOR = new String[]{
+            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_CHAINMAIL_HELMET,
+            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_DIAMOND_HELMET,
+            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_GOLDEN_HELMET,
+            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_IRON_HELMET,
+            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_LEATHER_HELMET,
+            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NETHERITE_HELMET,
+            PluginConstants.FIRST_DROP_ITEM_SUBTYPE_TURTLE_HELMET
+    };
 
     /**
      * <p>FirstJoinListener</p>
@@ -36,7 +49,7 @@ public class FirstJoinListener implements Listener
 
     /**
      * <p>onFirstJoin</p>
-     * <p>Method to handle PlayerJointEvent event</p>
+     * <p>Method to handle PlayerJoinEvent event</p>
      * @param e Event to handle
      */
     @EventHandler
@@ -60,10 +73,10 @@ public class FirstJoinListener implements Listener
 
                     case PluginConstants.FIRST_DROP_ITEM_TYPE_BOOK:
 
-                        if(this.itemSubtypeValidator(PluginConstants.FIRST_DROP_ITEM_SUBTYPE_BOOK, (String) firstDropItem.get("subtype")))
+                        if(this.itemSubtypeValidator(FIRST_DROP_ITEM_SUBTYPE_BOOK, (String) firstDropItem.get(PluginConstants.CONFIG_FIELD_SUBTYPE)))
                         {
 
-                            for(int i = 0; i < (Integer) firstDropItem.get("quantity"); i++)
+                            for(int i = 0; i < (Integer) firstDropItem.get(PluginConstants.CONFIG_FIELD_QUANTITY); i++)
                             {
 
                                 player.getInventory().addItem(CustomItemGenerator.generateCustomItemTypeBook(firstDropItem));
@@ -79,7 +92,7 @@ public class FirstJoinListener implements Listener
                                             PluginConstants.TEXT_BLANK_SPACE +
                                             PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
                                             PluginConstants.TEXT_BLANK_SPACE +
-                                            "[ " + firstDropItem.get("subtype") + " ]"
+                                            "[ " + firstDropItem.get(PluginConstants.CONFIG_FIELD_SUBTYPE) + " ]"
                             );
 
                         }
@@ -88,10 +101,10 @@ public class FirstJoinListener implements Listener
 
                     case PluginConstants.FIRST_DROP_ITEM_TYPE_ARMOR:
 
-                        if(this.itemSubtypeValidator(PluginConstants.FIRST_DROP_ITEM_SUBTYPE_ARMOR, (String) firstDropItem.get("subtype")))
+                        if(this.itemSubtypeValidator(FIRST_DROP_ITEM_SUBTYPE_ARMOR, (String) firstDropItem.get(PluginConstants.CONFIG_FIELD_SUBTYPE)))
                         {
 
-                            for(int i = 0; i < (Integer) firstDropItem.get("quantity"); i++)
+                            for(int i = 0; i < (Integer) firstDropItem.get(PluginConstants.CONFIG_FIELD_QUANTITY); i++)
                             {
 
                                 player.getInventory().addItem(CustomItemGenerator.generateCustomItemTypeArmor(firstDropItem));
@@ -107,7 +120,7 @@ public class FirstJoinListener implements Listener
                                             PluginConstants.TEXT_BLANK_SPACE +
                                             PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
                                             PluginConstants.TEXT_BLANK_SPACE +
-                                            "[ " + firstDropItem.get("subtype") + " ]"
+                                            "[ " + firstDropItem.get(PluginConstants.CONFIG_FIELD_SUBTYPE) + " ]"
                             );
 
                         }
@@ -116,10 +129,10 @@ public class FirstJoinListener implements Listener
 
                     case PluginConstants.FIRST_DROP_ITEM_TYPE_WEAPON:
 
-                        if(this.itemSubtypeValidator(PluginConstants.FIRST_DROP_ITEM_SUBTYPE_WEAPON, (String) firstDropItem.get("subtype")))
+                        if(this.itemSubtypeValidator(PluginConstants.FIRST_DROP_ITEM_SUBTYPE_WEAPON, (String) firstDropItem.get(PluginConstants.CONFIG_FIELD_SUBTYPE)))
                         {
 
-                            for(int i = 0; i < (Integer) firstDropItem.get("quantity"); i++)
+                            for(int i = 0; i < (Integer) firstDropItem.get(PluginConstants.CONFIG_FIELD_QUANTITY); i++)
                             {
 
                                 player.getInventory().addItem(CustomItemGenerator.generateCustomItemTypeWeapon(firstDropItem));
@@ -135,7 +148,7 @@ public class FirstJoinListener implements Listener
                                             PluginConstants.TEXT_BLANK_SPACE +
                                             PluginConstants.FIRST_DROP_ITEM_SUBTYPE_NOT_VALID +
                                             PluginConstants.TEXT_BLANK_SPACE +
-                                            "[ " + firstDropItem.get("subtype") + " ]"
+                                            "[ " + firstDropItem.get(PluginConstants.CONFIG_FIELD_SUBTYPE) + " ]"
                             );
 
                         }

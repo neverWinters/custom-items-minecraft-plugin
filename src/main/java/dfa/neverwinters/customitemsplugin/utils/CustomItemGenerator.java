@@ -17,7 +17,13 @@ import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class CustomItemGenerator {
-    
+
+    /**
+     * <p>CustomItemGenerator</p>
+     * <p>Private class constructor.</p>
+     */
+    private CustomItemGenerator(){ }
+
     /**
      * <p>generateCustomItemTypeBook</p>
      * <p>Method to generate book type custom item.</p>
@@ -27,7 +33,7 @@ public class CustomItemGenerator {
     public static ItemStack generateCustomItemTypeBook(Map<?, ?> bookInfo)
     {
 
-        ItemStack itemStack = new ItemStack(Material.getMaterial((String) bookInfo.get("subtype"))); 
+        ItemStack itemStack = new ItemStack(Material.getMaterial((String) bookInfo.get(PluginConstants.CONFIG_FIELD_SUBTYPE)));
         BookMeta bookMeta = (BookMeta) itemStack.getItemMeta();
 
         if(bookMeta != null)
@@ -84,7 +90,7 @@ public class CustomItemGenerator {
     public static ItemStack generateCustomItemTypeArmor(Map<?, ?> armorInfo)
     {
 
-        ItemStack itemStack = new ItemStack(Material.getMaterial((String) armorInfo.get("subtype")));
+        ItemStack itemStack = new ItemStack(Material.getMaterial((String) armorInfo.get(PluginConstants.CONFIG_FIELD_SUBTYPE)));
         ItemMeta armorMeta = itemStack.getItemMeta();
 
         if(armorMeta != null)
@@ -141,7 +147,7 @@ public class CustomItemGenerator {
     public static ItemStack generateCustomItemTypeWeapon(Map<?, ?> weaponInfo)
     {
 
-        ItemStack itemStack = new ItemStack(Material.getMaterial((String) weaponInfo.get("subtype")));
+        ItemStack itemStack = new ItemStack(Material.getMaterial((String) weaponInfo.get(PluginConstants.CONFIG_FIELD_SUBTYPE)));
         ItemMeta weaponMeta = itemStack.getItemMeta();
 
         itemStack.setItemMeta(weaponMeta);
