@@ -1,3 +1,5 @@
 .vscode
 .idea
 target
+-Dsonar.host.url
+-Dsonar.projectKey
